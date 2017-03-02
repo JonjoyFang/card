@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>模仿易启秀写贺卡 1  </title>
+    <link rel="stylesheet" href="css/iconfont.css">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/reset.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/jquery-2.2.3.min.js"></script>
+    <script src="js/jquery.touchSwipe.min.js"></script>
+    <script src="js/rotate.js"></script>
+</head>
+<body onmousewheel="return false;">
+
+<div class="container">
+<div class="page page1">
+    <div class="nav">
+          最美的遇见
+    </div>
+    <div class="bg_1">
+        <div id="music" class="musics">
+            <span id="on_click" class="iconfont icon-yinle-yishu yinyue"></span>
+            <audio class="audio" src="audio/stay.mp3" autoplay="autoplay" loop="loop">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <!--music  end-->
+        <img class="bg1" src="images/bg1.jpg" alt="">
+            <div class="img_1"><img class="img_font" src="images/font.png" alt=""></div>
+            <div class="img_2">
+                <img class="img2_1" src="images/font2.png" alt="">
+                <img class="img2_2" src="images/font3.png" alt="">
+            </div>
+            <div class="img_3"><img class="img2_3" src="images/bg2.png" alt=""></div>
+            <span class="iconfont icon-toup"></span>
+
+
+    </div>
+    <!--bg_1  end-->
+</div>
+<!-- page_1  end-->
+<div class="page page2">
+    <!--<img class="page2_img1" src="images/people.jpg" alt="">-->
+    <img class="page2_img2" src="images/bg3.png" alt="">
+    <img class="page2_img3" src="images/bg4.png" alt="">
+    <img class="page2_img4" src="images/font6.png" alt="">
+    <span class="iconfont icon-toup"></span>
+</div>
+<div class="page page3">
+	<img src="images/bg_san.gif"/>
+	<ul class="bg_san_font">
+		<li>一次奋不顾身的</li>
+		<li>爱情</li>
+	</ul>
+	<span class="iconfont icon-toup"></span>
+</div>
+<div class="page page4">
+	<img src="images/bg5.jpg"/>
+	<div class="under_bg5">
+		<img src="images/yun.png"/>
+	</div>
+	<ul class="bg5_font">
+		<li>一场说走就走的</li>
+		<li>旅行</li>
+	</ul>
+	<span class="iconfont icon-toup"></span>
+</div>
+<div class="page page5">
+	<img class="bg6" src="images/bg6.png" alt="" />
+	
+	<div class="page5_img">
+		<img src="images/bg5_img.jpg" alt="" />
+	</div>
+	
+	<ul class="page5_font">
+		<li>生活</li>
+		<li>因为充实</li>
+		<li>而</li>
+		<li>美好</li>
+	</ul>
+	<span class="iconfont icon-toup"></span>
+</div>
+
+</div>
+
+<script>
+    $(document).ready(
+        function() {
+            var nowpage = 0;
+            //给最大的盒子增加事件监听
+
+            $(".container").swipe(
+                {
+                    // swipe (事件，滑动的方向，滑动的距离，一次滑动的时间 , 几根手指)
+                    swipe:function(event, direction, distance, duration, fingerCount) {
+                        if(direction == "up"){//当向上滑动手指时令当前页面记数器加1
+                            nowpage = nowpage + 1;
+                        }else if(direction == "down"){//当向下滑动手指时令当前页面记数器减1
+                            nowpage = nowpage - 1;
+                        }
+
+                        if(nowpage > 4){//只有5个页面，所以当记数器大于4时令他返回4（从0开始记），避免溢出出错
+                            nowpage = 0;
+                        }
+
+                        if(nowpage < 0){
+                            nowpage = 4;
+                        }
+
+                        $(".container").animate({"top":nowpage * -100 + "%"},400);//根据当前记数器滚动到相应的高度
+
+//                        $(".page").eq(nowpage).addClass("cur").siblings().removeClass("cur");
+                    }
+                }
+            );
+        }
+    );
+</script>
+</body>
+</html>
